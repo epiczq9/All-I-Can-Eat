@@ -8,6 +8,11 @@ public class FoodEaten : MonoBehaviour
     public GameObject halfFood;
     bool halfEaten = false;
 
+    GameController gameController;
+
+    private void Start() {
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+    }
     public void TakeABite() {
         if (!halfEaten) {
             EatHalf();
@@ -24,5 +29,6 @@ public class FoodEaten : MonoBehaviour
 
     public void FinishFood() {
         Destroy(gameObject);
-    }
+        gameController.FinishedFood();
+    }    
 }
