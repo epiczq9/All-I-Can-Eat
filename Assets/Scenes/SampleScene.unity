@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.28502658, g: 0.37139305, b: 0.4960094, a: 1}
+  m_IndirectSpecularColor: {r: 0.2850269, g: 0.3713935, b: 0.49601045, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -528,10 +528,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6780089222137893609, guid: 986d98e416ae8fb4d847804eb53e40ca, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bce46e9027a7f7c458d5cbe1146e3c63, type: 2}
+    - target: {fileID: -516715931686749365, guid: 986d98e416ae8fb4d847804eb53e40ca, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 89ef36548828f3e489dc22e0040845a1, type: 2}
     - target: {fileID: 919132149155446097, guid: 986d98e416ae8fb4d847804eb53e40ca, type: 3}
       propertyPath: m_Name
       value: EatingAnimations
       objectReference: {fileID: 0}
+    - target: {fileID: 1793997221374196753, guid: 986d98e416ae8fb4d847804eb53e40ca, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b363dd35928028841921c4d5b8a0a5d2, type: 2}
+    - target: {fileID: 1982804011483451343, guid: 986d98e416ae8fb4d847804eb53e40ca, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bce46e9027a7f7c458d5cbe1146e3c63, type: 2}
+    - target: {fileID: 6534984685157150489, guid: 986d98e416ae8fb4d847804eb53e40ca, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a33404dca4caf514082091abf98f9131, type: 2}
+    - target: {fileID: 8371773337217453114, guid: 986d98e416ae8fb4d847804eb53e40ca, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bce46e9027a7f7c458d5cbe1146e3c63, type: 2}
+    - target: {fileID: 8672019397632408435, guid: 986d98e416ae8fb4d847804eb53e40ca, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b363dd35928028841921c4d5b8a0a5d2, type: 2}
+    - target: {fileID: 8882885739825739818, guid: 986d98e416ae8fb4d847804eb53e40ca, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 213bf5774d131cf41a89fbbb4a640984, type: 2}
+    - target: {fileID: 8882885739825739818, guid: 986d98e416ae8fb4d847804eb53e40ca, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: bf76fefba44df364ab425ddf69bbe8f7, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 986d98e416ae8fb4d847804eb53e40ca, type: 3}
 --- !u!1 &622442785 stripped
@@ -1157,13 +1193,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0, y: 0.953717, z: -0.30070576, w: 0}
-  m_LocalPosition: {x: 0, y: 3.77, z: 6.04}
+  m_LocalRotation: {x: 0.03574292, y: 0.93827796, z: -0.102079, w: 0.32853737}
+  m_LocalPosition: {x: -0.662, y: 1.27, z: 1.048}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 35, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 12.418, y: 141.405, z: 0}
 --- !u!114 &1687258586
 MonoBehaviour:
   m_ObjectHideFlags: 0
