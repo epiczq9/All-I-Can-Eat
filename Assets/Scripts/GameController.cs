@@ -89,8 +89,8 @@ public class GameController : MonoBehaviour
     }
 
     public void SpeedUpAnimations() {
-        animator.speed = 3f;
-        timerStartEatingLength /= 3;
+        animator.speed = 2f;
+        timerStartEatingLength /= 2;
     }
 
     public void SlowDownAnimations() {
