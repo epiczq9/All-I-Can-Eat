@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EaterBehaviour : MonoBehaviour
 {
-    
+    public GameController gameCont;
     void Start() {
         
     }
@@ -21,9 +21,9 @@ public class EaterBehaviour : MonoBehaviour
         if (Input.GetButtonDown("Fire3")) {
             GetComponent<Animator>().Play("BothHandsEat");
         }
-
+        
         if (Input.GetButtonDown("Jump")) {
-            GetComponent<Animator>().Play("HappyEat");
+            //GetComponent<Animator>().Play("HappyEat");
         }
     }
 }

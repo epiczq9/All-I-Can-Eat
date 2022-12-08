@@ -11,7 +11,7 @@ public class FoodEaten : MonoBehaviour
     GameController gameController;
 
     private void Start() {
-        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        gameController = GameObject.FindGameObjectWithTag("Woman").GetComponent<GameController>();
     }
     public void TakeABite() {
         if (!halfEaten) {
@@ -29,6 +29,6 @@ public class FoodEaten : MonoBehaviour
 
     public void FinishFood() {
         Destroy(gameObject);
-        gameController.FinishedFood();
+        //gameController.FinishedFood();
     }    
 }
