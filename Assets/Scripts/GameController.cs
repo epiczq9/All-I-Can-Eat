@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using Actopolus.FakeLeaderboard.Src;
 using Timers;
@@ -8,14 +9,16 @@ using Timers;
 public class GameController : MonoBehaviour
 {
     public GameObject food;
+    public Transform foodGroup;
     public List<GameObject> foods;
-    public GameObject burgerPrefab;
+
+    public GameObject tripleHotDogPrefab;
     public GameObject tripleBurgerPrefab;
     bool leaderboardHidden = true;
     bool gotFood = false;
     //bool doneEating = false;
     public bool useBothHands = false;
-    bool isLeftNext = false;
+    bool isLeftNext = true;
 
     public GameObject leftHand;
     public GameObject rightHand;
@@ -27,9 +30,14 @@ public class GameController : MonoBehaviour
     float tapTimerCurrent = 0;
     readonly float tapTimerMax = 1f;
 
+    public float money = 0;
+    public Text moneyText;
+    float reward = 0;
+
     Animator animator;
     SceneManagment sceneMng;
     void Start() {
+        SetupFoodList();
         animator = GetComponent<Animator>();
         sceneMng = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagment>();
     }
@@ -62,15 +70,21 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void StartLeftEating() {
+    void SetupFoodList() {
+        foreach(Transform foodItem in foodGroup) {
+            foods.Add(foodItem.gameObject);
+        }
+    }
+
+    public void StartLeftEating() {                                             //Called in animation
         TimersManager.SetTimer(this, timerStartEatingLength, GetFoodLeft);
     }
 
-    public void StartRightEating() {
+    public void StartRightEating() {                                             //Called in animation
         TimersManager.SetTimer(this, timerStartEatingLength, GetFoodRight);
     }
 
-    public void StartBothEating() {
+    public void StartBothEating() {                                              //Called in animation
         TimersManager.SetTimer(this, timerStartEatingLength, GetFoodBoth);
     }
 
@@ -116,9 +130,9 @@ public class GameController : MonoBehaviour
                 foods.Remove(foods[0]);
             }
             gotFood = true;
-            
         }
     }
+
     public void ChangeTransform(GameObject obj, GameObject target) {
         obj.transform.SetPositionAndRotation(target.transform.position, target.transform.rotation);
     }
@@ -129,48 +143,15 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void LeftFinished() {    //Called in animation
+    public void FinishedEating() {                                             //Called in animation
+        moneyText.text = "$" + money.ToString();
         food = null;
         gotFood = false;
+        isLeftNext = !isLeftNext;
         if (foods.Count != 0) {
             if (useBothHands) {
                 animator.Play("BothHandsEat");
                 useBothHands = false;
-                isLeftNext = false;
-            } else {
-                animator.Play("RightHandEat");
-            }
-        } else {
-            SlowDownAnimations();
-            GetComponent<Animator>().SetBool("foodGone", true);
-        }
-    }
-
-    public void RightFinished() {    //Called in animation
-        food = null;
-        gotFood = false;
-        if (foods.Count != 0) {
-            if (useBothHands) {
-                animator.Play("BothHandsEat");
-                useBothHands = false;
-                isLeftNext = true;
-            } else {
-                animator.Play("LeftHandEat");
-            }
-        } else {
-            SlowDownAnimations();
-            GetComponent<Animator>().SetBool("foodGone", true);
-        }
-    }
-
-    public void BothFinished() {    //Called in animation
-        food = null;
-        gotFood = false;
-        if (foods.Count != 0) {
-            if (useBothHands) {
-                animator.Play("BothHandsEat");
-                useBothHands = false;
-                isLeftNext = !isLeftNext;
             } else {
                 if (isLeftNext) {
                     animator.Play("LeftHandEat");
@@ -180,21 +161,15 @@ public class GameController : MonoBehaviour
             }
         } else {
             SlowDownAnimations();
-            GetComponent<Animator>().SetBool("foodGone", true);
+            //animator.SetBool("foodGone", true);
+            animator.Play("FinishedEating");
         }
     }
 
-    public void Eat() {    //Called in animation
+    public void Eat() {                                                        //Called in animation
         food.GetComponent<FoodEaten>().TakeABite();
     }
-    public void FinishedFood() {
-        food = null;
-        gotFood = false;
-        if (foods.Count == 0) {
-            SlowDownAnimations();
-            GetComponent<Animator>().SetBool("foodGone", true);
-        }
-    }
+
     public void ActivateLeaderboard() {
         if (leaderboardHidden) {
             ShowLeaderboard();
@@ -202,11 +177,13 @@ public class GameController : MonoBehaviour
             HideLeaderboard();
         }
     }
+
     void ShowLeaderboard() {
         Leaderboard.Instance.Show();
         leaderboardHidden = false;
         TimersManager.SetTimer(this, 5f, HideLeaderboard);
     }
+
     void HideLeaderboard() {
         Leaderboard.Instance.Hide(ResetScene);
         leaderboardHidden = true;
@@ -215,27 +192,5 @@ public class GameController : MonoBehaviour
     void ResetScene() {
         sceneMng.LoadScene(0);
     }
-
-    public void FinishedEating() {
-        food = null;
-        gotFood = false;
-        if (foods.Count != 0) {
-            if (useBothHands) {
-                animator.Play("BothHandsEat");
-                useBothHands = false;
-                isLeftNext = !isLeftNext;
-            } else {
-                if (isLeftNext) {
-                    animator.Play("LeftHandEat");
-                } else {
-                    animator.Play("RightHandEat");
-                }
-            }
-        } else {
-            SlowDownAnimations();
-            GetComponent<Animator>().SetBool("foodGone", true);
-        }
-    }
-
 
 }

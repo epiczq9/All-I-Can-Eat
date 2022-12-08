@@ -7,11 +7,12 @@ public class FoodEaten : MonoBehaviour
     public GameObject wholeFood;
     public GameObject halfFood;
     bool halfEaten = false;
+    public float worth;
 
-    GameController gameController;
+    GameController eater;
 
     private void Start() {
-        gameController = GameObject.FindGameObjectWithTag("Woman").GetComponent<GameController>();
+        eater = GameObject.FindGameObjectWithTag("Woman").GetComponent<GameController>();
     }
     public void TakeABite() {
         if (!halfEaten) {
@@ -28,6 +29,7 @@ public class FoodEaten : MonoBehaviour
     }
 
     public void FinishFood() {
+        eater.money += worth;
         Destroy(gameObject);
         //gameController.FinishedFood();
     }    

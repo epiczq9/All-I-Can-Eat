@@ -7,6 +7,8 @@ TagManager:
   - Food
   - SceneManager
   - Woman
+  - Burger
+  - TripleBurger
   layers:
   - Default
   - TransparentFX
