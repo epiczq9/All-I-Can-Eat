@@ -8,12 +8,17 @@ using Timers;
 
 public class GameController : MonoBehaviour
 {
+    private const string burgerString = "Burger";
+    private const string hotdogString = "HotDog";
+    private const string tacoString = "Taco";
     public GameObject food;
-    public Transform foodGroup;
+    public GameObject foodGroup;
     public List<GameObject> foods;
 
-    public GameObject tripleHotDogPrefab;
     public GameObject tripleBurgerPrefab;
+    public GameObject tripleHotDogPrefab;
+    public GameObject tripleTacoPrefab;
+
     bool leaderboardHidden = true;
     bool gotFood = false;
     //bool doneEating = false;
@@ -32,14 +37,15 @@ public class GameController : MonoBehaviour
 
     public float money = 0;
     public Text moneyText;
-    float reward = 0;
 
+    public TrayMove trayMove;
+    public RandomFood foodManager;
     Animator animator;
     SceneManagment sceneMng;
     void Start() {
-        SetupFoodList();
         animator = GetComponent<Animator>();
         sceneMng = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagment>();
+        //Time.timeScale *= 3;
     }
 
     void Update() {
@@ -71,16 +77,24 @@ public class GameController : MonoBehaviour
     }
 
     void SetupFoodList() {
-        foreach(Transform foodItem in foodGroup) {
+        foreach(Transform foodItem in foodGroup.transform) {
             foods.Add(foodItem.gameObject);
         }
     }
 
+    public void BeginEating() {
+
+        SetupFoodList();
+        animator.Play("LeftHandEat");
+    }
+
     public void StartLeftEating() {                                             //Called in animation
-        TimersManager.SetTimer(this, timerStartEatingLength, GetFoodLeft);
+        Debug.Log("Starting Left Anim");
+        //TimersManager.SetTimer(this, timerStartEatingLength, GetFoodLeft);
     }
 
     public void StartRightEating() {                                             //Called in animation
+        Debug.Log("Starting Right Anim");
         TimersManager.SetTimer(this, timerStartEatingLength, GetFoodRight);
     }
 
@@ -124,7 +138,20 @@ public class GameController : MonoBehaviour
 
     public void GetFoodBoth() {
         if (!gotFood && foods.Count >= 3) {
-            food = Instantiate(tripleBurgerPrefab, leftHand.transform);
+            switch (foods[0].tag) {
+                case burgerString:
+                    food = Instantiate(tripleBurgerPrefab, leftHand.transform);
+                    break;
+                case hotdogString:
+                    food = Instantiate(tripleHotDogPrefab, leftHand.transform);
+                    break;
+                case tacoString:
+                    food = Instantiate(tripleTacoPrefab, leftHand.transform);
+                    break;
+                default:
+                    break;
+            }
+            //food = Instantiate(tripleBurgerPrefab, leftHand.transform);
             for(int i = 0; i < 3; i++) {
                 Destroy(foods[0]);
                 foods.Remove(foods[0]);
@@ -159,6 +186,8 @@ public class GameController : MonoBehaviour
                     animator.Play("RightHandEat");
                 }
             }
+        } else if (trayMove.currentTray <    trayMove.trayList.Count) {
+            trayMove.MoveTrays();
         } else {
             SlowDownAnimations();
             //animator.SetBool("foodGone", true);

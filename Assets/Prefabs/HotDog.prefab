@@ -177,8 +177,8 @@ GameObject:
   - component: {fileID: 4566162077889349832}
   - component: {fileID: 7837561089239758305}
   m_Layer: 0
-  m_Name: HotDogPrefab
-  m_TagString: Untagged
+  m_Name: HotDog
+  m_TagString: HotDog
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

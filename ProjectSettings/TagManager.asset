@@ -8,7 +8,8 @@ TagManager:
   - SceneManager
   - Woman
   - Burger
-  - TripleBurger
+  - HotDog
+  - Taco
   layers:
   - Default
   - TransparentFX
