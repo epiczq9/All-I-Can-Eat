@@ -63,7 +63,8 @@ public class GameController : MonoBehaviour
             
         }
         if (Input.GetButtonDown("Jump")) {
-            ActivateBothHands();
+            //ActivateBothHands();
+            Leaderboard.Instance.Reset();
         }
 
         if (spedUp) {
@@ -83,7 +84,6 @@ public class GameController : MonoBehaviour
     }
 
     public void BeginEating() {
-
         SetupFoodList();
         animator.Play("LeftHandEat");
     }
@@ -186,7 +186,7 @@ public class GameController : MonoBehaviour
                     animator.Play("RightHandEat");
                 }
             }
-        } else if (trayMove.currentTray <    trayMove.trayList.Count) {
+        } else if (trayMove.currentTray < trayMove.trayList.Count) {
             trayMove.MoveTrays();
         } else {
             SlowDownAnimations();

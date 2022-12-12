@@ -11,12 +11,19 @@ public class TrayMove : MonoBehaviour
     public ConveyorBelt conveyorBelt;
     public int currentTray = 0;
     void Start() {
+        SetupTrays();
         MoveTrays();
     }
 
     void Update() {
         if (Input.GetButtonDown("Fire2")) {
             MoveTrays();
+        }
+    }
+
+    public void SetupTrays() {
+        foreach (Transform tray in transform) {
+            trayList.Add(tray.gameObject);
         }
     }
 
