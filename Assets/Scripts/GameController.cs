@@ -39,12 +39,15 @@ public class GameController : MonoBehaviour
     public Text moneyText;
 
     public TrayMove trayMove;
-    public RandomFood foodManager;
+    public RandomFood randomFood;
     Animator animator;
     SceneManagment sceneMng;
+
+
     void Start() {
         animator = GetComponent<Animator>();
         sceneMng = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagment>();
+        moneyText.text = money.ToString();
         //Time.timeScale *= 3;
     }
 
@@ -88,7 +91,7 @@ public class GameController : MonoBehaviour
         animator.Play("LeftHandEat");
     }
 
-    public void StartLeftEating() {                                             //Called in animation
+    /*public void StartLeftEating() {                                             //Called in animation
         Debug.Log("Starting Left Anim");
         //TimersManager.SetTimer(this, timerStartEatingLength, GetFoodLeft);
     }
@@ -100,7 +103,7 @@ public class GameController : MonoBehaviour
 
     public void StartBothEating() {                                              //Called in animation
         TimersManager.SetTimer(this, timerStartEatingLength, GetFoodBoth);
-    }
+    }*/
 
     public void SpeedUpAnimations() {
         animator.speed = 2f;
@@ -112,7 +115,7 @@ public class GameController : MonoBehaviour
         timerStartEatingLength *= 3;
     }
 
-    public void GetFoodLeft() {
+    public void GetFoodLeft() {                                              //Called in animation
         if (!gotFood) {
             if (foods.Count != 0) {
                 food = foods[0];
@@ -124,7 +127,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void GetFoodRight() {
+    public void GetFoodRight() {                                              //Called in animation
         if (!gotFood) {
             if (foods.Count != 0) {
                 food = foods[0];
@@ -136,7 +139,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void GetFoodBoth() {
+    public void GetFoodBoth() {                                              //Called in animation
         if (!gotFood && foods.Count >= 3) {
             switch (foods[0].tag) {
                 case burgerString:
@@ -171,7 +174,7 @@ public class GameController : MonoBehaviour
     }
 
     public void FinishedEating() {                                             //Called in animation
-        moneyText.text = "$" + money.ToString();
+        moneyText.text = money.ToString();
         food = null;
         gotFood = false;
         isLeftNext = !isLeftNext;

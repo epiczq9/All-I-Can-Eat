@@ -10,6 +10,7 @@ TagManager:
   - Burger
   - HotDog
   - Taco
+  - FoodManager
   layers:
   - Default
   - TransparentFX

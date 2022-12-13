@@ -31,13 +31,11 @@ public class TrayMove : MonoBehaviour
         conveyorBelt.StartAnimation();
         gameController.foodGroup = trayList[currentTray].GetComponent<RandomFood>().foodGroupOnTray;
         currentTray++;
-        foodTrigger.SetActive(false);
         transform.DOMoveX(transform.position.x + 1, 1.5f).SetEase(Ease.Linear).OnComplete(StartEating);
     }
 
     public void StartEating() {
         conveyorBelt.StopAnimation();
-        foodTrigger.SetActive(true);
         gameController.BeginEating();
     }
 }
