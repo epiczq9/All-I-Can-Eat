@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Timers;
 
 public class TrayMove : MonoBehaviour
 {
@@ -10,9 +11,10 @@ public class TrayMove : MonoBehaviour
     public List<GameObject> trayList;
     public ConveyorBelt conveyorBelt;
     public int currentTray = 0;
+    public bool trayReady = false;
     void Start() {
         SetupTrays();
-        MoveTrays();
+        TimersManager.SetTimer(this, 0.1f, MoveTrays);
     }
 
     void Update() {
@@ -28,6 +30,8 @@ public class TrayMove : MonoBehaviour
     }
 
     public void MoveTrays() {
+        trayReady = false;
+        trayList[currentTray].GetComponent<RandomFood>().SpawnFood();
         conveyorBelt.StartAnimation();
         gameController.foodGroup = trayList[currentTray].GetComponent<RandomFood>().foodGroupOnTray;
         currentTray++;
@@ -35,6 +39,7 @@ public class TrayMove : MonoBehaviour
     }
 
     public void StartEating() {
+        trayReady = true;
         conveyorBelt.StopAnimation();
         gameController.BeginEating();
     }

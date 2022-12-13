@@ -38,10 +38,14 @@ public class GameController : MonoBehaviour
     public float money = 0;
     public Text moneyText;
 
+    public GameObject crumbs;
+    public Transform mouthTransform;
+
     public TrayMove trayMove;
     public RandomFood randomFood;
     Animator animator;
     SceneManagment sceneMng;
+    public ButtonBehaviour buttonBehaviour;
 
 
     void Start() {
@@ -173,8 +177,13 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void Eat() {                                                        //Called in animation
+        food.GetComponent<FoodEaten>().TakeABite();
+        Instantiate(crumbs, mouthTransform);
+    }
+
     public void FinishedEating() {                                             //Called in animation
-        moneyText.text = money.ToString();
+        UpdateText();
         food = null;
         gotFood = false;
         isLeftNext = !isLeftNext;
@@ -184,8 +193,10 @@ public class GameController : MonoBehaviour
                 useBothHands = false;
             } else {
                 if (isLeftNext) {
+                    buttonBehaviour.mergeOnCooldown = false;
                     animator.Play("LeftHandEat");
                 } else {
+                    buttonBehaviour.mergeOnCooldown = false;
                     animator.Play("RightHandEat");
                 }
             }
@@ -198,8 +209,8 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void Eat() {                                                        //Called in animation
-        food.GetComponent<FoodEaten>().TakeABite();
+    public void UpdateText() {
+        moneyText.text = money.ToString();
     }
 
     public void ActivateLeaderboard() {

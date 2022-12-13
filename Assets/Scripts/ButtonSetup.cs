@@ -7,10 +7,9 @@ public class ButtonSetup : MonoBehaviour
 {
     public GameController gameController;
 
-    public int mergePrice = 0;
-    public int addFoodPrice = 0;
-    public int increaseSpeedPrice = 0;
-    public int increaseIncomePrice = 0;
+    ButtonBehaviour buttonBehaviour;
+    FoodManager foodManager;
+    TrayMove trayMove;
 
     public GameObject mergeButton;
     public GameObject addFoodButton;
@@ -18,6 +17,9 @@ public class ButtonSetup : MonoBehaviour
     public GameObject increaseIncomeButton;
 
     void Start() {
+        foodManager = GameObject.FindGameObjectWithTag("FoodManager").GetComponent<FoodManager>();
+        trayMove = GameObject.FindGameObjectWithTag("FoodManager").GetComponent<TrayMove>();
+        buttonBehaviour = GetComponent<ButtonBehaviour>();
         gameController = GameObject.FindGameObjectWithTag("Woman").GetComponent<GameController>();
     }
 
@@ -39,7 +41,7 @@ public class ButtonSetup : MonoBehaviour
     }
 
     void SetupMergeButton() {
-        if (gameController.money >= mergePrice) {
+        if (trayMove.trayReady && gameController.money >= buttonBehaviour.mergePrice && !buttonBehaviour.mergeOnCooldown && gameController.foods.Count >= 3) {
             ActivateButton(mergeButton);
         } else {
             DeactivateButton(mergeButton);
@@ -47,7 +49,7 @@ public class ButtonSetup : MonoBehaviour
     }
 
     void SetupAddFoodButton() {
-        if (gameController.money >= addFoodPrice) {
+        if (trayMove.trayReady && gameController.money >= buttonBehaviour.addFoodPrice && !foodManager.finalFoodAdded) {
             ActivateButton(addFoodButton);
         } else {
             DeactivateButton(addFoodButton);
@@ -55,7 +57,7 @@ public class ButtonSetup : MonoBehaviour
     }
 
     void SetupIncreaseSpeedButton() {
-        if (gameController.money >= increaseSpeedPrice) {
+        if (trayMove.trayReady && gameController.money >= buttonBehaviour.increaseSpeedPrice) {
             ActivateButton(increaseSpeedButton);
         } else {
             DeactivateButton(increaseSpeedButton);
@@ -63,7 +65,7 @@ public class ButtonSetup : MonoBehaviour
     }
 
     void SetupIncreaseIncomeButton() {
-        if (gameController.money >= increaseIncomePrice) {
+        if (trayMove.trayReady && gameController.money >= buttonBehaviour.increaseIncomePrice) {
             ActivateButton(increaseIncomeButton);
         } else {
             DeactivateButton(increaseIncomeButton);

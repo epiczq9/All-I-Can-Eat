@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Timers;
 
 public class RandomFood : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class RandomFood : MonoBehaviour
 
     public GameObject foodGroupOnTray;
     void Start() {
-        foodGroupOnTray = Instantiate(foodManager.spawnableFoodItems[Random.Range(0, foodManager.spawnableFoodItems.Count)], transform);
+        //TimersManager.SetTimer(this, 0.1f, SpawnFood);
+    }
+
+    public void SpawnFood() {
+        foodGroupOnTray = Instantiate(foodManager.spawnableFoodItems[Random.Range(0, foodManager.spawnableFoodItems.Count)], transform);    
     }
 }

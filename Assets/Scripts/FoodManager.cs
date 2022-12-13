@@ -14,6 +14,8 @@ public class FoodManager : MonoBehaviour
     public bool tacosAdded = false;
     public bool snailsAdded = false;
 
+    public bool finalFoodAdded = false;
+
     public float foodWorthMod = 1;
 
     public GameController gameController;
@@ -49,5 +51,6 @@ public class FoodManager : MonoBehaviour
     public void AddTacosToList() {
         spawnableFoodItems.Add(tacoTrayPrefab);
         tacosAdded = true;
+        finalFoodAdded = true;
     }
 }
