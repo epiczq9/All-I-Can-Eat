@@ -25,17 +25,25 @@ public class GameController : MonoBehaviour
     //bool doneEating = false;
     public bool useBothHands = false;
     bool isLeftNext = true;
+    public bool timerRanOut = false;
 
     public GameObject leftHand;
     public GameObject rightHand;
     public GameObject bothHands;
     public GameObject ramenHand;
+    public GameObject head;
+
+    Color currentFaceColor;
+    public Color greenFaceColor;
 
     float timerStartEatingLength = 0.35f;
     
     bool spedUp = false;
     float tapTimerCurrent = 0;
     readonly float tapTimerMax = 1f;
+
+    float tick = 0f;
+    bool changeColor = false;
 
     public float money = 0;
     public Text moneyText;
@@ -52,6 +60,7 @@ public class GameController : MonoBehaviour
 
 
     void Start() {
+        currentFaceColor = head.GetComponent<Renderer>().material.color;
         animator = GetComponent<Animator>();
         sceneMng = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneManagment>();
         moneyText.text = money.ToString();
@@ -85,6 +94,13 @@ public class GameController : MonoBehaviour
                 SlowDownAnimations();
             }
         }
+
+        if (changeColor) {
+            if (head.GetComponent<Renderer>().material.color != greenFaceColor) {
+                tick += Time.deltaTime / 2;
+                head.GetComponent<Renderer>().material.color = Color.Lerp(currentFaceColor, greenFaceColor, tick);
+            }
+        }
     }
 
     void SetupFoodList() {
@@ -97,6 +113,8 @@ public class GameController : MonoBehaviour
         SetupFoodList();
         if (foods[0].CompareTag("Ramen")) {
             animator.Play("EatRamen");
+        } else if (foods[0].CompareTag("Bljak")) {
+            animator.Play("BadFood");
         } else {
             animator.Play("LeftHandEat");
         }
@@ -175,7 +193,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void GetRamen() {
+    public void GetRamen() {                                                   //Called in animation
         if (!gotFood) {
             if (foods.Count != 0) {
                 food = foods[0];
@@ -187,7 +205,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void GetRamenMerge() {
+    public void GetRamenMerge() {                                                   //Called in animation
         if (!gotFood && foods.Count >= 3) {
             food = Instantiate(tripleRamenPrefab, ramenHand.transform);
             for (int i = 0; i < 3; i++) {
@@ -213,17 +231,31 @@ public class GameController : MonoBehaviour
         Instantiate(crumbs, mouthTransform);
     }
 
-    public void TiltRamenBowl() {
+    public void TiltRamenBowl() {                                                   //Called in animation
         food.GetComponent<RamenEaten>().TiltBowl();
     }
 
-    public void TiltRamenBowlBack() {
+    public void TiltRamenBowlBack() {                                                   //Called in animation
         food.GetComponent<RamenEaten>().TiltBackBowl();
     }
 
     public void EatRamen() {                                                   //Called in animation
         food.GetComponent<RamenEaten>().Eat();
         Instantiate(drops, mouthTransform);
+    }
+
+    public void EatBadFood() {                                                   //Called in animation
+        food.GetComponent<FoodEaten>().TakeABite();
+        TimersManager.SetTimer(this, 0.7f, TurnGreen);
+    }
+
+    void TurnGreen() {
+        changeColor = true;
+    }
+
+    public void DropBadFood() {                                                   //Called in animation
+        food.transform.parent = null;
+        food.transform.DOMoveY(0.5f, 0.7f);
     }
 
     public void DropBowl() {                                                   //Called in animation
@@ -242,26 +274,32 @@ public class GameController : MonoBehaviour
         food = null;
         gotFood = false;
         isLeftNext = !isLeftNext;
-        if (foods.Count != 0) {
-            if (useBothHands) {
-                animator.Play("BothHandsEat");
-                useBothHands = false;
-            } else {
-                if (isLeftNext) {
-                    buttonBehaviour.mergeOnCooldown = false;
-                    animator.Play("LeftHandEat");
-                } else {
-                    buttonBehaviour.mergeOnCooldown = false;
-                    animator.Play("RightHandEat");
-                }
-            }
-        } else if (trayMove.currentTray < trayMove.trayList.Count) {
-            animator.Play("WipeFace");
-            trayMove.MoveTrays();
-        } else {
+        if (timerRanOut) {
             SlowDownAnimations();
             //animator.SetBool("foodGone", true);
             animator.Play("FinishedEating");
+        } else {
+            if (foods.Count != 0) {
+                if (useBothHands) {
+                    animator.Play("BothHandsEat");
+                    useBothHands = false;
+                } else {
+                    if (isLeftNext) {
+                        buttonBehaviour.mergeOnCooldown = false;
+                        animator.Play("LeftHandEat");
+                    } else {
+                        buttonBehaviour.mergeOnCooldown = false;
+                        animator.Play("RightHandEat");
+                    }
+                }
+            } else if (trayMove.currentTray < trayMove.trayList.Count) {
+                animator.Play("WipeFace");
+                trayMove.MoveTrays();
+            } else {
+                SlowDownAnimations();
+                //animator.SetBool("foodGone", true);
+                animator.Play("FinishedEating");
+            }
         }
     }
 
@@ -288,11 +326,19 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void FinishedEatingBadFood() {                                             //Called in animation
+        UpdateText();
+        food = null;
+        gotFood = false;
+        animator.enabled = false;
+        ActivateLeaderboard();
+    }
+
     public void UpdateText() {
         moneyText.text = money.ToString();
     }
 
-    public void ActivateLeaderboard() {
+    public void ActivateLeaderboard() {                                                   //Called in animation
         if (leaderboardHidden) {
             ShowLeaderboard();
         } else {
@@ -307,12 +353,16 @@ public class GameController : MonoBehaviour
     }
 
     void HideLeaderboard() {
-        Leaderboard.Instance.Hide(ResetScene);
+        Leaderboard.Instance.Hide(LoadNextScene);
         leaderboardHidden = true;
     }
 
     void ResetScene() {
         sceneMng.LoadScene(0);
+    }
+
+    public void LoadNextScene() {
+        sceneMng.LoadScene(1);
     }
 
 }

@@ -8,6 +8,7 @@ public class TrayMove : MonoBehaviour
 {
     public GameController gameController;
     public GameObject foodTrigger;
+    public GameObject trayPrefab;
     public List<GameObject> trayList;
     public ConveyorBelt conveyorBelt;
     public int currentTray = 0;
@@ -39,8 +40,21 @@ public class TrayMove : MonoBehaviour
     }
 
     public void StartEating() {
+        SpawnNewTray();
         trayReady = true;
         conveyorBelt.StopAnimation();
         gameController.BeginEating();
     }
+
+    void SpawnNewTray() {
+        if (currentTray >= 2) {
+            Destroy(trayList[currentTray - 2]);
+        }
+        GameObject newTray = Instantiate(trayPrefab, transform);
+        newTray.transform.position = new Vector3(-3.13199997f, 0.902999997f, 0.51700002f);
+        newTray.GetComponent<RandomFood>().foodManager = GetComponent<FoodManager>();
+        trayList.Add(newTray);
+    }
+
+
 }

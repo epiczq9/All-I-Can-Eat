@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: d1c3109bdb54ad54c8a2b2838528e640
+    path: Assets/Scenes/Novi Model Okruzenje.unity
+    guid: 6665415cb4de21b47b17c375a791cf10
+  - enabled: 1
+    path: Assets/Scenes/Test 1.unity
+    guid: 6e2babc84a682074fa13a2ca8e978c1d
   m_configObjects: {}

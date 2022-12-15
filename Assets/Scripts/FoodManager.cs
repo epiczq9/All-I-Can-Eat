@@ -22,8 +22,8 @@ public class FoodManager : MonoBehaviour
 
     public GameController gameController;
     void Start() {
-        //AddBurgersToList();
-        AddRamenToList();
+        AddBurgersToList();
+        //AddRamenToList();
     }
 
     void Update() {
