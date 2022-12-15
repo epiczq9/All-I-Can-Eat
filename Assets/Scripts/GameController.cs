@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
     public GameObject tripleBurgerPrefab;
     public GameObject tripleHotDogPrefab;
     public GameObject tripleTacoPrefab;
+    public GameObject tripleRamenPrefab;
 
     bool leaderboardHidden = true;
     bool gotFood = false;
@@ -28,6 +29,7 @@ public class GameController : MonoBehaviour
     public GameObject leftHand;
     public GameObject rightHand;
     public GameObject bothHands;
+    public GameObject ramenHand;
 
     float timerStartEatingLength = 0.35f;
     
@@ -39,6 +41,7 @@ public class GameController : MonoBehaviour
     public Text moneyText;
 
     public GameObject crumbs;
+    public GameObject drops;
     public Transform mouthTransform;
 
     public TrayMove trayMove;
@@ -92,7 +95,12 @@ public class GameController : MonoBehaviour
 
     public void BeginEating() {
         SetupFoodList();
-        animator.Play("LeftHandEat");
+        if (foods[0].CompareTag("Ramen")) {
+            animator.Play("EatRamen");
+        } else {
+            animator.Play("LeftHandEat");
+        }
+        
     }
 
     /*public void StartLeftEating() {                                             //Called in animation
@@ -167,6 +175,29 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void GetRamen() {
+        if (!gotFood) {
+            if (foods.Count != 0) {
+                food = foods[0];
+                foods.Remove(foods[0]);
+                ChangeTransform(food, ramenHand);
+                food.transform.parent = ramenHand.transform;
+                gotFood = true;
+            }
+        }
+    }
+
+    public void GetRamenMerge() {
+        if (!gotFood && foods.Count >= 3) {
+            food = Instantiate(tripleRamenPrefab, ramenHand.transform);
+            for (int i = 0; i < 3; i++) {
+                Destroy(foods[0]);
+                foods.Remove(foods[0]);
+            }
+            gotFood = true;
+        }
+    }
+
     public void ChangeTransform(GameObject obj, GameObject target) {
         obj.transform.SetPositionAndRotation(target.transform.position, target.transform.rotation);
     }
@@ -180,6 +211,30 @@ public class GameController : MonoBehaviour
     public void Eat() {                                                        //Called in animation
         food.GetComponent<FoodEaten>().TakeABite();
         Instantiate(crumbs, mouthTransform);
+    }
+
+    public void TiltRamenBowl() {
+        food.GetComponent<RamenEaten>().TiltBowl();
+    }
+
+    public void TiltRamenBowlBack() {
+        food.GetComponent<RamenEaten>().TiltBackBowl();
+    }
+
+    public void EatRamen() {                                                   //Called in animation
+        food.GetComponent<RamenEaten>().Eat();
+        Instantiate(drops, mouthTransform);
+    }
+
+    public void DropBowl() {                                                   //Called in animation
+        food.GetComponent<RamenEaten>().DropBowl();
+        food.transform.parent = null;
+    }
+
+    public void DropBowlMerge() {                                                   //Called in animation
+        food.transform.parent = null;
+        food.GetComponent<RamenEaten>().DropBowlMerge();
+        
     }
 
     public void FinishedEating() {                                             //Called in animation
@@ -201,6 +256,30 @@ public class GameController : MonoBehaviour
                 }
             }
         } else if (trayMove.currentTray < trayMove.trayList.Count) {
+            animator.Play("WipeFace");
+            trayMove.MoveTrays();
+        } else {
+            SlowDownAnimations();
+            //animator.SetBool("foodGone", true);
+            animator.Play("FinishedEating");
+        }
+    }
+
+    public void FinishedEatingRamen() {                                             //Called in animation
+        UpdateText();
+        food = null;
+        gotFood = false;
+        isLeftNext = !isLeftNext;
+        if (foods.Count != 0) {
+            if (useBothHands) {
+                animator.Play("EatRamenMerge");
+                useBothHands = false;
+            } else {
+                buttonBehaviour.mergeOnCooldown = false;
+                animator.Play("EatRamen");
+            }
+        } else if (trayMove.currentTray < trayMove.trayList.Count) {
+            animator.Play("WipeFace");
             trayMove.MoveTrays();
         } else {
             SlowDownAnimations();

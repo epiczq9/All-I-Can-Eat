@@ -9,9 +9,11 @@ public class FoodManager : MonoBehaviour
     public GameObject burgerTrayPrefab;
     public GameObject hotdogTrayPrefab;
     public GameObject tacoTrayPrefab;
+    public GameObject ramenTrayPrefab;
 
     public bool hotdogAdded = false;
     public bool tacosAdded = false;
+    public bool ramenAdded = false;
     public bool snailsAdded = false;
 
     public bool finalFoodAdded = false;
@@ -20,7 +22,8 @@ public class FoodManager : MonoBehaviour
 
     public GameController gameController;
     void Start() {
-        AddBurgersToList();
+        //AddBurgersToList();
+        AddRamenToList();
     }
 
     void Update() {
@@ -34,8 +37,8 @@ public class FoodManager : MonoBehaviour
             AddHotDogsToList();
         } else if (!tacosAdded) {
             AddTacosToList();
-        } else {
-
+        } else if (!ramenAdded) {
+            AddRamenToList();
         }
     }
 
@@ -51,6 +54,11 @@ public class FoodManager : MonoBehaviour
     public void AddTacosToList() {
         spawnableFoodItems.Add(tacoTrayPrefab);
         tacosAdded = true;
+    }
+
+    public void AddRamenToList() {
+        spawnableFoodItems.Add(ramenTrayPrefab);
+        ramenAdded = true;
         finalFoodAdded = true;
     }
 }

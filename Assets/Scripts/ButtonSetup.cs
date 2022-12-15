@@ -41,7 +41,7 @@ public class ButtonSetup : MonoBehaviour
     }
 
     void SetupMergeButton() {
-        if (trayMove.trayReady && gameController.money >= buttonBehaviour.mergePrice && !buttonBehaviour.mergeOnCooldown && gameController.foods.Count >= 3) {
+        if (!gameController.useBothHands && trayMove.trayReady && gameController.money >= buttonBehaviour.mergePrice && gameController.foods.Count >= 3) {
             ActivateButton(mergeButton);
         } else {
             DeactivateButton(mergeButton);

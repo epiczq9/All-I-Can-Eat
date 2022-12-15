@@ -11,6 +11,9 @@ TagManager:
   - HotDog
   - Taco
   - FoodManager
+  - Ramen
+  - OverheadTransform
+  - DropTransform
   layers:
   - Default
   - TransparentFX
