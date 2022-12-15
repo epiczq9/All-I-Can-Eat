@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagment : MonoBehaviour
 {
+    public int nextLevel;
 
     void Start() {
         
@@ -12,6 +13,9 @@ public class SceneManagment : MonoBehaviour
 
     void Update() {
         
+    }
+    public void LoadScene() {
+        SceneManager.LoadScene(nextLevel);
     }
 
     public void LoadScene(int level) {

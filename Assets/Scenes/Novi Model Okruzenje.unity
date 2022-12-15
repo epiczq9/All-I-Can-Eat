@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.2850269, g: 0.3713935, b: 0.49601045, a: 1}
+  m_IndirectSpecularColor: {r: 0.28502658, g: 0.37139305, b: 0.4960094, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -990,10 +990,12 @@ MonoBehaviour:
   moneyText: {fileID: 1472588094}
   crumbs: {fileID: 7415363268635323316, guid: 1a0471b94dbc41e40b627b2a181ee6ff, type: 3}
   drops: {fileID: 7415363268635323316, guid: 368a61c8f8a937741a962ccd4620ce68, type: 3}
+  wipeCrumbs: {fileID: 7415363268635323316, guid: 9e1717783f2c5cd458c90924effebcfe, type: 3}
   mouthTransform: {fileID: 248180833}
   trayMove: {fileID: 1724811206}
   randomFood: {fileID: 0}
   buttonBehaviour: {fileID: 25819367}
+  canvasUI: {fileID: 647630681}
 --- !u!95 &248180837
 Animator:
   serializedVersion: 3
@@ -2323,6 +2325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad019792461ad8045ba901d73a72352c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLevel: 1
 --- !u!1 &580145259
 GameObject:
   m_ObjectHideFlags: 0
@@ -3909,10 +3912,12 @@ MonoBehaviour:
   moneyText: {fileID: 0}
   crumbs: {fileID: 0}
   drops: {fileID: 0}
+  wipeCrumbs: {fileID: 0}
   mouthTransform: {fileID: 0}
   trayMove: {fileID: 0}
   randomFood: {fileID: 0}
   buttonBehaviour: {fileID: 0}
+  canvasUI: {fileID: 0}
 --- !u!4 &1001569834
 Transform:
   m_ObjectHideFlags: 0
@@ -5102,7 +5107,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 01:00
+  m_Text: 
 --- !u!222 &1450239973
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5123,7 +5128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31e83ce6533fc8344b93ec36ede46f14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerMax: 300
+  timerMax: 10
   timerRanOut: 0
 --- !u!1 &1472588092
 GameObject:
@@ -7418,10 +7423,12 @@ MonoBehaviour:
   moneyText: {fileID: 1472588094}
   crumbs: {fileID: 7415363268635323316, guid: 1a0471b94dbc41e40b627b2a181ee6ff, type: 3}
   drops: {fileID: 0}
+  wipeCrumbs: {fileID: 0}
   mouthTransform: {fileID: 498437989}
   trayMove: {fileID: 1724811206}
   randomFood: {fileID: 0}
   buttonBehaviour: {fileID: 25819367}
+  canvasUI: {fileID: 0}
 --- !u!1001 &4431046007804630792
 PrefabInstance:
   m_ObjectHideFlags: 0

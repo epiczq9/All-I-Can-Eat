@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1733635904071855759}
   - component: {fileID: 6940757097972585249}
   m_Layer: 0
-  m_Name: CrumbsEffect 1
+  m_Name: WipeCrumbsEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2240,7 +2240,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 80
       minScalar: 0
       maxCurve:
         serializedVersion: 2

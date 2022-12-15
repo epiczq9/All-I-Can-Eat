@@ -50,6 +50,7 @@ public class GameController : MonoBehaviour
 
     public GameObject crumbs;
     public GameObject drops;
+    public GameObject wipeCrumbs;
     public Transform mouthTransform;
 
     public TrayMove trayMove;
@@ -57,6 +58,7 @@ public class GameController : MonoBehaviour
     Animator animator;
     SceneManagment sceneMng;
     public ButtonBehaviour buttonBehaviour;
+    public GameObject canvasUI;
 
 
     void Start() {
@@ -269,6 +271,10 @@ public class GameController : MonoBehaviour
         
     }
 
+    public void WipeFace() {                                                   //Called in animation
+        Instantiate(wipeCrumbs, mouthTransform);
+    }
+
     public void FinishedEating() {                                             //Called in animation
         UpdateText();
         food = null;
@@ -347,9 +353,10 @@ public class GameController : MonoBehaviour
     }
 
     void ShowLeaderboard() {
+        canvasUI.SetActive(false);
         Leaderboard.Instance.Show();
         leaderboardHidden = false;
-        TimersManager.SetTimer(this, 5f, HideLeaderboard);
+        //TimersManager.SetTimer(this, 5f, HideLeaderboard);
     }
 
     void HideLeaderboard() {
