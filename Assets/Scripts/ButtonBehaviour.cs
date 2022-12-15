@@ -78,6 +78,8 @@ public class ButtonBehaviour : MonoBehaviour
             addFoodText.text = "ADD HOT DOGS";
         } else if (!foodManager.tacosAdded) {
             addFoodText.text = "ADD TACOS";
+        } else if (!foodManager.ramenAdded) {
+            addFoodText.text = "ADD RAMEN";
         } else {
             addFoodText.text = "NO MORE FOOD";
         }
