@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Novi Model Okruzenje.unity
+    path: Assets/Scenes/Sredjene/Novi Model Okruzenje.unity
     guid: 6665415cb4de21b47b17c375a791cf10
   - enabled: 1
     path: Assets/Scenes/Novi Model Okruzenje 1.unity
