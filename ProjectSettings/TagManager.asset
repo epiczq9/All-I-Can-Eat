@@ -15,6 +15,7 @@ TagManager:
   - OverheadTransform
   - DropTransform
   - Bljak
+  - UISpawn
   layers:
   - Default
   - TransparentFX

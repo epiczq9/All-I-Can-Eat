@@ -20,6 +20,8 @@ public class ButtonBehaviour : MonoBehaviour
     public Text increaseSpeedPriceText;
     public Text increaseIncomePriceText;
 
+    public float timeScaleMultiplier = 1.3f;
+
     public bool mergeOnCooldown = false;
 
     void Start() {
@@ -57,7 +59,7 @@ public class ButtonBehaviour : MonoBehaviour
     }
 
     public void IncreaseSpeed() {
-        Time.timeScale *= 1.3f;
+        Time.timeScale *= timeScaleMultiplier;
         gameController.money -= increaseSpeedPrice;
         increaseSpeedPrice = (int)(increaseSpeedPrice * 2f);
         UpdateText();

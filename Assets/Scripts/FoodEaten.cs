@@ -12,10 +12,12 @@ public class FoodEaten : MonoBehaviour
 
     GameController eater;
     public FoodManager foodManager;
+    SpawnPointPopup UISpawn;
 
     private void Start() {
         eater = GameObject.FindGameObjectWithTag("Woman").GetComponent<GameController>();
         foodManager = GameObject.FindGameObjectWithTag("FoodManager").GetComponent<FoodManager>();
+        UISpawn = GameObject.FindGameObjectWithTag("UISpawn").GetComponent<SpawnPointPopup>();
     }
     public void TakeABite() {
         if (!halfEaten) {
@@ -32,7 +34,9 @@ public class FoodEaten : MonoBehaviour
     }
 
     public void FinishFood() {
-        eater.money += (int)(worth * foodManager.foodWorthMod);
+        int newWorth = (int)(worth * foodManager.foodWorthMod);
+        eater.money += newWorth;
+        UISpawn.SpawnPoints(newWorth);
         Destroy(gameObject);
         //gameController.FinishedFood();
     }    
