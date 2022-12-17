@@ -20,16 +20,32 @@ public class FoodManager : MonoBehaviour
 
     public float foodWorthMod = 1;
 
+    public int currentFood = 0;
+
     public GameController gameController;
     void Start() {
-        AddBurgersToList();
-        //AddRamenToList();
+        SpawnOrder1();
+        //SpawnOrder2();
     }
 
     void Update() {
         if (Input.GetButtonDown("Fire3")) {
             //SpawnFood();
         }
+    }
+
+    void SpawnOrder1() {
+        AddRamenToList();
+        AddHotDogsToList();
+        AddBurgersToList();
+        AddTacosToList();
+    }
+
+    void SpawnOrder2() {
+        AddBurgersToList();
+        AddHotDogsToList();
+        AddTacosToList();
+        AddRamenToList();
     }
 
     public void AddFood() {

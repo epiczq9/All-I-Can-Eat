@@ -13,6 +13,8 @@ public class RandomFood : MonoBehaviour
     }
 
     public void SpawnFood() {
-        foodGroupOnTray = Instantiate(foodManager.spawnableFoodItems[Random.Range(0, foodManager.spawnableFoodItems.Count)], transform);    
+        //foodGroupOnTray = Instantiate(foodManager.spawnableFoodItems[Random.Range(0, foodManager.spawnableFoodItems.Count)], transform);    
+        foodGroupOnTray = Instantiate(foodManager.spawnableFoodItems[foodManager.currentFood], transform);
+        foodManager.currentFood++;
     }
 }

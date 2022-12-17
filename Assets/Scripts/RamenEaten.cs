@@ -13,6 +13,8 @@ public class RamenEaten : MonoBehaviour
     public Transform overheadTransform;
     public Transform dropTransform;
 
+    public SpawnPointPopup UISpawn;
+
     GameController eater;
     public FoodManager foodManager;
 
@@ -21,9 +23,12 @@ public class RamenEaten : MonoBehaviour
         dropTransform = GameObject.FindGameObjectWithTag("DropTransform").GetComponent<Transform>();
         eater = GameObject.FindGameObjectWithTag("Woman").GetComponent<GameController>();
         foodManager = GameObject.FindGameObjectWithTag("FoodManager").GetComponent<FoodManager>();
+        UISpawn = GameObject.FindGameObjectWithTag("UISpawn").GetComponent<SpawnPointPopup>();
     }
     public void Eat() {
-        eater.money += (int)(worth * foodManager.foodWorthMod);
+        int newWorth = (int)(worth * foodManager.foodWorthMod);
+        eater.money += newWorth;
+        UISpawn.SpawnPoints(newWorth);
         emptyBowl.SetActive(true);
         fullBowl.SetActive(false);
     }
