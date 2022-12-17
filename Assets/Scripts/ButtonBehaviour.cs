@@ -78,6 +78,8 @@ public class ButtonBehaviour : MonoBehaviour
     }
 
     void UpdateText() {
+        FakeUpdateForCreatives();
+
         gameController.UpdateText();
         mergePriceText.text = mergePrice.ToString();
 
@@ -103,6 +105,14 @@ public class ButtonBehaviour : MonoBehaviour
         
         increaseSpeedPriceText.text = increaseSpeedPrice.ToString();
         increaseIncomePriceText.text = increaseIncomePrice.ToString();
+
+    }
+
+    void FakeUpdateForCreatives() {
+        foodManager.hotdogAdded = true;
+        foodManager.tacosAdded = true;
+        foodManager.ramenAdded = true;
+        foodManager.finalFoodAdded = true;
 
     }
 }
