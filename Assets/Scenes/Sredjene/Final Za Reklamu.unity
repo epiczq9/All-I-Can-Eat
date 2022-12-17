@@ -1068,7 +1068,7 @@ MonoBehaviour:
   ramenHand: {fileID: 1378779966}
   head: {fileID: 140652112}
   greenFaceColor: {r: 0.58431375, g: 0.9254902, b: 0.23137255, a: 1}
-  money: 1000
+  money: 5500
   moneyText: {fileID: 1472588094}
   crumbs: {fileID: 7415363268635323316, guid: 1a0471b94dbc41e40b627b2a181ee6ff, type: 3}
   drops: {fileID: 7415363268635323316, guid: 368a61c8f8a937741a962ccd4620ce68, type: 3}
@@ -6715,6 +6715,7 @@ MonoBehaviour:
   snailsAdded: 0
   finalFoodAdded: 0
   foodWorthMod: 1
+  currentFood: 0
   gameController: {fileID: 248180836}
 --- !u!1001 &1733274798
 PrefabInstance:
