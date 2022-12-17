@@ -15,6 +15,7 @@ public class ButtonSetup : MonoBehaviour
     public GameObject addFoodButton;
     public GameObject increaseSpeedButton;
     public GameObject increaseIncomeButton;
+    public Image foodImage;
 
     void Start() {
         foodManager = GameObject.FindGameObjectWithTag("FoodManager").GetComponent<FoodManager>();
@@ -49,6 +50,13 @@ public class ButtonSetup : MonoBehaviour
     }
 
     void SetupAddFoodButton() {
+        if(foodImage != null) {
+            if (addFoodButton.GetComponent<Button>().IsInteractable()) {
+                foodImage.color = new Color(1, 1, 1, 1f);
+            } else {
+                foodImage.color = new Color(0.9f, 0.9f, 0.9f, 0.4f);
+            }   
+        }
         if (trayMove.trayReady && gameController.money >= buttonBehaviour.addFoodPrice && !foodManager.finalFoodAdded) {
             ActivateButton(addFoodButton);
         } else {

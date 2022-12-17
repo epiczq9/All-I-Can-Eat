@@ -20,6 +20,11 @@ public class ButtonBehaviour : MonoBehaviour
     public Text increaseSpeedPriceText;
     public Text increaseIncomePriceText;
 
+    public Image foodImage;
+    public Sprite hotdogImg;
+    public Sprite tacoImg;
+    public Sprite ramenImg;
+
     public float timeScaleMultiplier = 1.3f;
 
     public bool mergeOnCooldown = false;
@@ -78,16 +83,20 @@ public class ButtonBehaviour : MonoBehaviour
 
         if (!foodManager.hotdogAdded) {
             addFoodText.text = "ADD HOT DOGS";
+            foodImage.sprite = hotdogImg;
         } else if (!foodManager.tacosAdded) {
             addFoodText.text = "ADD TACOS";
+            foodImage.sprite = tacoImg;
         } else if (!foodManager.ramenAdded) {
             addFoodText.text = "ADD RAMEN";
+            foodImage.sprite = ramenImg;
         } else {
             addFoodText.text = "NO MORE FOOD";
+            Destroy(foodImage);
         }
 
         if (foodManager.finalFoodAdded) {
-            addFoodPriceText.text = "MAX";
+            addFoodPriceText.text = "";
         } else {
             addFoodPriceText.text = addFoodPrice.ToString();
         }
