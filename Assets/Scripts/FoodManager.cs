@@ -35,17 +35,17 @@ public class FoodManager : MonoBehaviour
     }
 
     void SpawnOrder1() {
-        AddRamenToList();
-        AddHotDogsToList();
-        AddBurgersToList();
-        AddTacosToList();
+        spawnableFoodItems.Add(ramenTrayPrefab);
+        spawnableFoodItems.Add(hotdogTrayPrefab);
+        spawnableFoodItems.Add(burgerTrayPrefab);
+        spawnableFoodItems.Add(tacoTrayPrefab);
     }
 
     void SpawnOrder2() {
-        AddBurgersToList();
-        AddHotDogsToList();
-        AddTacosToList();
-        AddRamenToList();
+        spawnableFoodItems.Add(burgerTrayPrefab);
+        spawnableFoodItems.Add(hotdogTrayPrefab);
+        spawnableFoodItems.Add(tacoTrayPrefab);
+        spawnableFoodItems.Add(ramenTrayPrefab);
     }
 
     public void AddFood() {

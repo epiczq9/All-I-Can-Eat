@@ -78,7 +78,7 @@ public class ButtonBehaviour : MonoBehaviour
     }
 
     void UpdateText() {
-        FakeUpdateForCreatives();
+        //FakeUpdateForCreatives();
 
         gameController.UpdateText();
         mergePriceText.text = mergePrice.ToString();
