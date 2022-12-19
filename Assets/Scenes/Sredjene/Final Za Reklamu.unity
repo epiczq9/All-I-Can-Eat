@@ -6709,6 +6709,7 @@ MonoBehaviour:
   hotdogTrayPrefab: {fileID: 5323621816572528356, guid: 6b12675c14aab054cada4482c4c4c86b, type: 3}
   tacoTrayPrefab: {fileID: 7078656656252938521, guid: 8397214ad588f3844a40d7ff42fe1667, type: 3}
   ramenTrayPrefab: {fileID: 7497464554123737078, guid: 543043934a9c8314891ce7f49bbfcca8, type: 3}
+  badBurgerTrayPrefab: {fileID: 1478292496163598637, guid: c7d5bc66766bc6146819557e35d5a25c, type: 3}
   hotdogAdded: 0
   tacosAdded: 0
   ramenAdded: 0

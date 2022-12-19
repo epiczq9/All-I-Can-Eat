@@ -9,7 +9,7 @@ public class UITimer : MonoBehaviour
     GameController gameController;
     int time;
     float timerCurrentInt;
-    public float timerMax = 30;
+    public float timerMax = 120;
     public bool timerRanOut = false;
 
 
@@ -20,10 +20,10 @@ public class UITimer : MonoBehaviour
 
     void Update() {
         time = (int)TimersManager.RemainingTime(Finish);
+        GetComponent<Text>().text = StylizeTimerWithManager();
+
 
         //TimerWithoutManager();
-
-        GetComponent<Text>().text = StylizeTimerWithManager();
         //GetComponent<Text>().text = StylizeTimerWithoutManager();
     }
 

@@ -337,7 +337,7 @@ public class GameController : MonoBehaviour
         food = null;
         gotFood = false;
         animator.enabled = false;
-        ActivateLeaderboard();
+        //ActivateLeaderboard();
     }
 
     public void UpdateText() {
