@@ -251,10 +251,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullBowl: {fileID: 4559309196905054594}
   emptyBowl: {fileID: 1530212284522144896}
-  worth: 90
+  worth: 100
   worthMod: 1
   overheadTransform: {fileID: 0}
   dropTransform: {fileID: 0}
+  UISpawn: {fileID: 0}
   foodManager: {fileID: 0}
 --- !u!1 &2841950475278407855
 GameObject:

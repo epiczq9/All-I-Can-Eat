@@ -28,7 +28,7 @@ public class RamenEaten : MonoBehaviour
     public void Eat() {
         int newWorth = (int)(worth * foodManager.foodWorthMod);
         eater.money += newWorth;
-        UISpawn.SpawnPoints(newWorth);
+        //UISpawn.SpawnPoints(newWorth);
         emptyBowl.SetActive(true);
         fullBowl.SetActive(false);
     }

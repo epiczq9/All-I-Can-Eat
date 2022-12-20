@@ -328,4 +328,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wholeFood: {fileID: 1364663751971037049}
   halfFood: {fileID: 829405740868498293}
-  worth: 21
+  worth: 30
+  worthMod: 1
+  foodManager: {fileID: 0}

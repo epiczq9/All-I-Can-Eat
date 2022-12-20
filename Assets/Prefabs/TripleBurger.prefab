@@ -138,7 +138,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wholeFood: {fileID: 4292593094835538291}
   halfFood: {fileID: 3308298275451300449}
-  worth: 15
+  worth: 20
+  worthMod: 1
+  foodManager: {fileID: 0}
 --- !u!1 &3308298275451300449
 GameObject:
   m_ObjectHideFlags: 0

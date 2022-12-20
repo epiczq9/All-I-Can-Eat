@@ -36,7 +36,7 @@ public class FoodEaten : MonoBehaviour
     public void FinishFood() {
         int newWorth = (int)(worth * foodManager.foodWorthMod);
         eater.money += newWorth;
-        UISpawn.SpawnPoints(newWorth);
+        //UISpawn.SpawnPoints(newWorth);
         Destroy(gameObject);
         //gameController.FinishedFood();
     }    

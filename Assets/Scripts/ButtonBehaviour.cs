@@ -66,7 +66,7 @@ public class ButtonBehaviour : MonoBehaviour
     public void IncreaseSpeed() {
         Time.timeScale *= timeScaleMultiplier;
         gameController.money -= increaseSpeedPrice;
-        increaseSpeedPrice = (int)(increaseSpeedPrice * 2f);
+        increaseSpeedPrice = (int)(increaseSpeedPrice * 10f);
         UpdateText();
     }
 

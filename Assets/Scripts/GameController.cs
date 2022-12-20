@@ -356,7 +356,7 @@ public class GameController : MonoBehaviour
         canvasUI.SetActive(false);
         Leaderboard.Instance.Show();
         leaderboardHidden = false;
-        //TimersManager.SetTimer(this, 5f, HideLeaderboard);
+        TimersManager.SetTimer(this, 5f, HideLeaderboard);
     }
 
     void HideLeaderboard() {

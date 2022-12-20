@@ -25,9 +25,10 @@ public class FoodManager : MonoBehaviour
 
     public GameController gameController;
     void Start() {
-        //SpawnOrder1();
+        SpawnOrder1();
         //SpawnOrder2();
-        SpawnOrder3();
+        //SpawnOrder3();
+        //AddBurgersToList();
     }
 
     void Update() {

@@ -14,16 +14,18 @@ public class UITimer : MonoBehaviour
 
 
     void Start() {
-        TimersManager.SetTimer(this, timerMax, Finish);
+        //TimersManager.SetTimer(this, timerMax, Finish);
         gameController = GameObject.FindGameObjectWithTag("Woman").GetComponent<GameController>();
     }
 
     void Update() {
-        time = (int)TimersManager.RemainingTime(Finish);
-        GetComponent<Text>().text = StylizeTimerWithManager();
+        if (Input.GetButtonDown("Fire2")) {
+            Finish();
+        }
+        //time = (int)TimersManager.RemainingTime(Finish);
+        //GetComponent<Text>().text = StylizeTimerWithManager();
 
-
-        //TimerWithoutManager();
+        TimerWithoutManager();
         //GetComponent<Text>().text = StylizeTimerWithoutManager();
     }
 
@@ -31,7 +33,7 @@ public class UITimer : MonoBehaviour
         if (timerMax > 0) {
             timerMax -= Time.deltaTime / Time.timeScale;
         } else {
-            Finish();
+            //Finish();
         }
         timerCurrentInt = (int)timerMax;
     }

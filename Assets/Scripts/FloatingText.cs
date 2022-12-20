@@ -7,9 +7,6 @@ using TMPro;
 
 public class FloatingText : MonoBehaviour {
 
-    float timerCurrent = 0;
-    float timerMax = 2f;
-
     void Start() {
         TimersManager.SetTimer(this, 0.5f, DestroyText);
         transform.DOMoveY(1.7f, 0.5f);
