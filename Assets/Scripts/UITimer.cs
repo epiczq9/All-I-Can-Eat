@@ -14,18 +14,15 @@ public class UITimer : MonoBehaviour
 
 
     void Start() {
-        //TimersManager.SetTimer(this, timerMax, Finish);
+        TimersManager.SetTimer(this, timerMax, Finish);
         gameController = GameObject.FindGameObjectWithTag("Woman").GetComponent<GameController>();
     }
 
     void Update() {
-        if (Input.GetButtonDown("Fire2")) {
-            Finish();
-        }
-        //time = (int)TimersManager.RemainingTime(Finish);
-        //GetComponent<Text>().text = StylizeTimerWithManager();
+        time = (int)TimersManager.RemainingTime(Finish);
+        GetComponent<Text>().text = StylizeTimerWithManager();
 
-        TimerWithoutManager();
+        //TimerWithoutManager();
         //GetComponent<Text>().text = StylizeTimerWithoutManager();
     }
 
