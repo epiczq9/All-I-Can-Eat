@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/QuickSetupScene.unity
+    guid: b8d93b24829cda94f8afa1300a6d70ca
+  - enabled: 1
     path: Assets/Scenes/Sredjene/Final Za Reklamu 0.unity
     guid: b933b2b2ef5e795449df759e28bb9549
   - enabled: 1

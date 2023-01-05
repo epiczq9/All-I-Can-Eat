@@ -13,14 +13,27 @@ public class TrayMove : MonoBehaviour
     public ConveyorBelt conveyorBelt;
     public int currentTray = 0;
     public bool trayReady = false;
+
+    float timerCurrent = 0;
+    float timerMax = 0.1f;
+    bool timerEnd = false;
     void Start() {
         SetupTrays();
-        TimersManager.SetTimer(this, 0.1f, MoveTrays);
+        //TimersManager.SetTimer(this, 0.1f, MoveTrays);
     }
 
     void Update() {
         if (Input.GetButtonDown("Fire2")) {
             MoveTrays();
+        }
+
+        if (!timerEnd) {
+            if (timerCurrent < timerMax) {
+                timerCurrent += Time.deltaTime;
+            } else {
+                MoveTrays();
+                timerEnd = true;
+            }
         }
     }
 

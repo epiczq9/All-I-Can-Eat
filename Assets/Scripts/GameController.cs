@@ -369,7 +369,7 @@ public class GameController : MonoBehaviour
     }
 
     public void LoadNextScene() {
-        sceneMng.LoadScene(1);
+        sceneMng.LoadScene();
     }
 
 }

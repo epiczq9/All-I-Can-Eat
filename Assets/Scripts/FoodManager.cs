@@ -25,16 +25,13 @@ public class FoodManager : MonoBehaviour
 
     public GameController gameController;
     void Start() {
-        SpawnOrder1();
+        //SpawnOrder1();
         //SpawnOrder2();
         //SpawnOrder3();
-        //AddBurgersToList();
+        AddBurgersToList();
     }
 
     void Update() {
-        if (Input.GetButtonDown("Fire3")) {
-            //SpawnFood();
-        }
     }
 
     void SpawnOrder1() {
